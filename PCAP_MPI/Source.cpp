@@ -81,14 +81,11 @@ int main(int argc, char *argv[])
 	// Scatter string - number of bytes written by each process
 	MPI_Scatter(str, sstr_len, MPI_CHAR, recv_str, sstr_len, MPI_CHAR, 0, MPI_COMM_WORLD);
 
-	int _base = sstr_len * rank * 4;
 	for (i = 0; i < sstr_len && recv_str[i] != '\0'; i++) {
 		char curr = recv_str[i];
 		for (j = 0; j < sizeof(char) * 4; j++) {
-			int pos = _base + (4 * i) + j;
-			cout << "In rank " << rank << ", old: " << recv_img_blue[pos] << endl;
+			int pos = (4 * i) + j;
 			recv_img_blue[pos] = ((recv_img_blue[pos] >> 2) << 2) | (curr & 0x3);
-			cout << "In rank " << rank << ", new: " << recv_img_blue[pos] << endl;
 			curr = curr >> 2;
 		}
 	}
@@ -97,13 +94,8 @@ int main(int argc, char *argv[])
 
 	if (rank == 0) {
 
-		for (i = 0; i < 30; i++) {
-			cout << i << ", old: " << img_blue[i] << ", new: " << final_blue[i] << endl;
-		}
-
 		int off = 0;
 		k = 0;
-		cout << msg_len;
 		for (i = 0; i < msg_len * 4; i++, off++) {
 			if (off >= cols) {
 				off = 0;
