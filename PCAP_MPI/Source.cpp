@@ -41,9 +41,9 @@ int main(int argc, char *argv[])
 	if(rank == 0) 
 	{
 		cout << "Enter the message to be hidden: ";
-		cin >> str;
+		cin.getline(str, sizeof(str));
 		msg_len = strlen(str);
-		sstr_len = msg_len / size;
+		sstr_len = ceil((float)msg_len / size);
 
 		// Storing blue values in a single dimension array.
 		for (i = 0; i < rows; i++)
