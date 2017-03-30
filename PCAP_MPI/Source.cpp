@@ -103,6 +103,9 @@ int main(int argc, char *argv[])
 			}
 			img.at<Vec3b>(k, off) = final_blue[i];
 		}
+
+		cout << "Message stored! Displaying edited file\n";
+
 		namedWindow("Saved File", WINDOW_AUTOSIZE);
 		imshow("Saved File", img);
 		imwrite(argv[2], img);
