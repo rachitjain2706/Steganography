@@ -1,3 +1,5 @@
+#compare normal and encoded image
+
 import cv2
 matnew = cv2.imread("./newimg.bmp", 1)
 mat = cv2.imread("./testimg.bmp", 1)
