@@ -1,8 +1,8 @@
 #compare normal and encoded image
 
 import cv2
-matnew = cv2.imread("./newimg.bmp", 1)
-mat = cv2.imread("./testimg.bmp", 1)
+matnew = cv2.imread("./newimage.bmp", 1)
+mat = cv2.imread("./testimage.bmp", 1)
 
 # print matnew - mat
 for i in range(len(matnew)):
